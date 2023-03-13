@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.file.Paths;
 import java.util.Random;
 
 /**
@@ -55,12 +56,13 @@ public class BeerLoader implements CommandLineRunner {
     private final BeerRepository beerRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         loadBeerObjects();
     }
 
     private synchronized void loadBeerObjects() {
         log.debug("Loading initial data. Count is: {}", beerRepository.count() );
+        log.debug(Paths.get(".").toString());
 
         if (beerRepository.count() == 0) {
 
